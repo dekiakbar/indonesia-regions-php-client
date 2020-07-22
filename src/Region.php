@@ -6,7 +6,8 @@ class Region
 {
     const VERSION="1.0.0";
     const API_BASE_PATH = 'https://sig.bps.go.id/';
-
+    const DEFAULT_MODE = 'bps';
+    
     const URL_PREFIX = [
         'rest-drop-down',
         'rest-bridging-dagri',
@@ -65,9 +66,27 @@ class Region
         "Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.1 SUSE/6.0.428.0 (KHTML, like Gecko) Chrome/6.0.428.0 Safari/534.1"
     ];
 
-    public function getAllProvince($mode, $level, $parentId = null)
+    public function getAllProvince($mode=null)
+    {   
+        $response = $this->request( $this->urlBuilder($mode, 'provinsi') );
+        return $response;
+    }
+
+    public function getCityListByProvinceId($mode, $parentId = null)
     {
-        $response = $this->request( $this->urlBuilder($mode, $level, $parentId) );
+        $response = $this->request( $this->urlBuilder($mode, 'kabupaten', $parentId) );
+        return $response;
+    }
+
+    public function getSubdistrictListByCityId($mode, $parentId = null)
+    {
+        $response = $this->request( $this->urlBuilder($mode, 'kecamatan', $parentId) );
+        return $response;
+    }
+
+    public function getVillageListBySubdistrictId($mode, $parentId = null)
+    {
+        $response = $this->request( $this->urlBuilder($mode, 'desa', $parentId) );
         return $response;
     }
 
@@ -86,7 +105,8 @@ class Region
     }
 
     public function urlBuilder($mode, $level, $parentId = null)
-    {
+    {   
+        if($mode == null) $mode = self::DEFAULT_MODE;
         if( $this->validate($mode, $level, $parentId) ){
             $urlPrefix = self::URL_PREFIX[array_search($mode, self::MODE_PREFIX)];
             $parent = '';
@@ -101,7 +121,7 @@ class Region
 
         if( !in_array( $level,self::LEVEL_PREFIX) ) throw new \Exception('Unknown Level');
 
-        if( $mode == 'dagri' && $level != 'provinsi' && $parentId != null){
+        if( $mode == 'dagri' && !in_array($level,['provinsi','kabupaten']) && $parentId != null){
             if ( !strpos($parentId, ".") !== false ) throw new \Exception('Wrong Parent ID');
         }
 
