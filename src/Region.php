@@ -134,7 +134,7 @@ class Region
         if(array_key_exists($provinceId,self::ISO_3166_2_CODE)) return self::ISO_3166_2_CODE[$provinceId];
     }
 
-    public function request($url)
+    private function request($url)
     {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -148,7 +148,7 @@ class Region
         return $response;
     }
 
-    public function urlBuilder($mode, $level, $parentId = null)
+    private function urlBuilder($mode, $level, $parentId = null)
     {   
         if($mode == null) $mode = self::DEFAULT_MODE;
         if( $this->validate($mode, $level, $parentId) ){
@@ -159,7 +159,7 @@ class Region
         }
     }
 
-    public function validate($mode, $level, $parentId = null)
+    private function validate($mode, $level, $parentId = null)
     {
         if( !in_array( $mode,self::MODE_PREFIX) ) throw new \Exception('Unknown Mode');
 
@@ -173,7 +173,7 @@ class Region
         return true;
     }
 
-    public function getRandomUa()
+    private function getRandomUa()
     {
         return self::$ua[array_rand(self::$ua)];
     }
