@@ -1,11 +1,9 @@
 os: linux
-arch: arm64
+arch: amd64
 dist: bionic
 language: php
 php:
-  - '7.1'
-  - '7.2'
   - '7.3'
 before_script:
-  - composer install
+  - composer update
 script: phpunit
