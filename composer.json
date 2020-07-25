@@ -17,7 +17,6 @@
             "email": "dekiakbar@linuxmail.org"
         }
     ],
-    "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
             "Dekiakbar\\IndonesiaRegionsPhpClient\\": "src/"
