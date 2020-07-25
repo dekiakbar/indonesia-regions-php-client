@@ -3,7 +3,7 @@ arch: amd64
 dist: bionic
 language: php
 php:
-  - '7.3'
+  - '7.2'
 before_script:
-  - composer update
+  - composer update --ignore-platform-reqs
 script: phpunit
