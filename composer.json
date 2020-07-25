@@ -10,7 +10,7 @@
     },
     "license": "MIT",
     "keywords": ["bps", "api", "php","region","indonesia"],
-    "homepage": "https://github.com/dekiakbar/bmkg-api-php-client",
+    "homepage": "https://github.com/dekiakbar/indonesia-regions-php-client",
     "authors": [
         {
             "name": "Deki Akbar",

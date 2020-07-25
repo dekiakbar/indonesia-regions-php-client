@@ -7,7 +7,7 @@ class Region
     const VERSION="1.0.0";
     const API_BASE_PATH = 'https://sig.bps.go.id/';
     const DEFAULT_MODE = 'bps';
-    
+
     const URL_PREFIX = [
         'rest-drop-down',
         'rest-bridging-dagri',
@@ -25,6 +25,43 @@ class Region
         'kabupaten',
         'kecamatan',
         'desa'
+    ];
+
+    const ISO_3166_2_CODE = [
+        '11' => 'ID-AC',
+        '51' => 'ID-BA',
+        '36' => 'ID-BT',
+        '17' => 'ID-BE',
+        '75' => 'ID-GO',
+        '31' => 'ID-JK',
+        '15' => 'ID-JA',
+        '32' => 'ID-JB',
+        '33' => 'ID-JT',
+        '35' => 'ID-JI',
+        '61' => 'ID-KB',
+        '63' => 'ID-KS',
+        '62' => 'ID-KT',
+        '64' => 'ID-KI',
+        '65' => 'ID-KU',
+        '19' => 'ID-BB',
+        '21' => 'ID-KR',
+        '18' => 'ID-LA',
+        '81' => 'ID-MA',
+        '82' => 'ID-MU',
+        '52' => 'ID-NB',
+        '53' => 'ID-NT',
+        '94' => 'ID-PA',
+        '91' => 'ID-PB',
+        '14' => 'ID-RI',
+        '76' => 'ID-SR',
+        '73' => 'ID-SN',
+        '72' => 'ID-ST',
+        '74' => 'ID-SG',
+        '71' => 'ID-SA',
+        '13' => 'ID-SB',
+        '16' => 'ID-SS',
+        '12' => 'ID-SU',
+        '34' => 'ID-YO'
     ];
 
     private static $ua = [
@@ -90,11 +127,18 @@ class Region
         return $response;
     }
 
+    public function getIsoCode($provinceId = null)
+    {
+        if(is_null($provinceId)) throw new \Exception('Province Id Cannot be NULL');
+        if(!array_key_exists($provinceId,self::ISO_3166_2_CODE)) throw new \Exception('Wrong Province Id');
+        if(array_key_exists($provinceId,self::ISO_3166_2_CODE)) return self::ISO_3166_2_CODE[$provinceId];
+    }
+
     public function request($url)
     {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
         curl_setopt($curl, CURLOPT_USERAGENT, $this->getRandomUa() );
         curl_setopt($curl, CURLOPT_REFERER, 'https://www.google.com/');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
