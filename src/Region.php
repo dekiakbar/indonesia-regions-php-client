@@ -4,14 +4,15 @@ namespace Dekiakbar\IndonesiaRegionsPhpClient;
 
 class Region
 {
-    const VERSION="1.0.0";
+    const VERSION="1.1.0";
     const API_BASE_PATH = 'https://sig.bps.go.id/';
     const DEFAULT_MODE = 'bps';
 
     const URL_PREFIX = [
         'rest-drop-down',
         'rest-bridging-dagri',
-        'rest-bridging-pos'
+        'rest-bridging-pos',
+        'rest-drop-down-dagri',
     ];
 
     const MODE_PREFIX = [
@@ -105,26 +106,51 @@ class Region
 
     public function getAllProvince($mode=null)
     {   
-        $response = $this->request( $this->urlBuilder($mode, 'provinsi') );
-        return $response;
+        $result = [];
+        $urls = $this->urlBuilder($mode, 'provinsi');
+        foreach( $urls as $i => $url){
+            $i == 1 ? $result['list'] = $this->request($url) : $result['detail'] = $this->request($url);
+        }
+        return (object) $result;
     }
 
     public function getCityListByProvinceId($mode, $parentId = null)
     {
-        $response = $this->request( $this->urlBuilder($mode, 'kabupaten', $parentId) );
-        return $response;
+        $result = [];
+        $urls = $this->urlBuilder($mode, 'kabupaten', $parentId);
+        foreach( $urls as $i => $url){
+            $i == 1 ? $result['list'] = $this->request($url) : $result['detail'] = $this->request($url);
+        }
+        return (object) $result;
     }
 
     public function getSubdistrictListByCityId($mode, $parentId = null)
     {
-        $response = $this->request( $this->urlBuilder($mode, 'kecamatan', $parentId) );
-        return $response;
+        $result = [];
+        $urls = $this->urlBuilder($mode, 'kecamatan', $parentId);
+        foreach( $urls as $i => $url){
+            $i == 1 ? $result['list'] = $this->request($url) : $result['detail'] = $this->request($url);
+        }
+        return (object) $result;
     }
 
     public function getVillageListBySubdistrictId($mode, $parentId = null)
     {
-        $response = $this->request( $this->urlBuilder($mode, 'desa', $parentId) );
-        return $response;
+        if( $mode == 'dagri' ){
+            $result = [];
+            $urls = $this->urlBuilder($mode, 'desa', $parentId);
+            foreach( $urls as $i => $url){
+                if($i == 0 ) $result['detail'] = $this->request($url);
+            }
+            return (object) $result;
+        }else{
+            $result = [];
+            $urls = $this->urlBuilder($mode, 'desa', $parentId);
+            foreach( $urls as $i => $url){
+                $i == 1 ? $result['list'] = $this->request($url) : $result['detail'] = $this->request($url);
+            }
+            return (object) $result;
+        }
     }
 
     public function getIsoCode($provinceId = null)
@@ -134,7 +160,7 @@ class Region
         if(array_key_exists($provinceId,self::ISO_3166_2_CODE)) return self::ISO_3166_2_CODE[$provinceId];
     }
 
-    private function request($url)
+    public function request($url)
     {
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, $url);
@@ -145,7 +171,7 @@ class Region
         $response = curl_exec ($curl);
         curl_close ($curl);
 
-        return $response;
+        return json_decode($response);
     }
 
     private function urlBuilder($mode, $level, $parentId = null)
@@ -155,7 +181,13 @@ class Region
             $urlPrefix = self::URL_PREFIX[array_search($mode, self::MODE_PREFIX)];
             $parent = '';
             if( $parentId != null && $level != 'provinsi') $parent = '&parent='.$parentId;
-            return self::API_BASE_PATH.$urlPrefix.'/getwilayah?level='.$level.$parent;
+            $result[] = self::API_BASE_PATH.$urlPrefix.'/getwilayah?level='.$level.$parent;
+            if( $mode == 'dagri' ){
+                $result[] = self::API_BASE_PATH.self::URL_PREFIX[3].'/getwilayah?level='.$level.$parent;
+            }else{
+                $result[] = self::API_BASE_PATH.self::URL_PREFIX[0].'/getwilayah?level='.$level.$parent;
+            }
+            return $result;
         }
     }
 
@@ -181,5 +213,17 @@ class Region
     public function getVersiion()
     {
         return self::VERSION;
+    }
+
+    public function trimWord($word){
+        return  str_replace('"', '', ucwords( strtolower(trim( $word ))) );
+    }
+
+    public function getDetailData(array $detailData, $id)
+    {
+        if( empty($detailData) || empty($id) ) throw new \Exception('Passed empty parameter to formattedName');
+        if( !is_array($detailData) ) throw new \Exception('First paramete of formattedName must be an array');
+        $data = json_decode( json_encode($detailData), true);
+        return (object) $data[array_search($id ,array_column($data, 'kode_bps') )];
     }
 }
