@@ -6,7 +6,8 @@
     "require": {
         "php": "^7.2",
         "ext-json": "*",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "illuminate/support": "5.6.*|5.7.*|5.8.*|^6.0"
     },
     "license": "MIT",
     "keywords": ["bps", "api", "php","region","indonesia"],
@@ -26,5 +27,15 @@
     },
     "require-dev": {
         "phpunit/phpunit": "8.0.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dekiakbar\\IndonesiaRegionsPhpClient\\Adapter\\Laravel\\RegionServiceProvider"
+            ],
+            "aliases": {
+                "Region": "Dekiakbar\\IndonesiaRegionsPhpClient\\Adapter\\Laravel\\RegionFacade"
+            }
+        }
     }
 }

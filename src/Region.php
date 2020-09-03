@@ -210,7 +210,7 @@ class Region
         return self::$ua[array_rand(self::$ua)];
     }
 
-    public function getVersiion()
+    public function getVersion()
     {
         return self::VERSION;
     }
