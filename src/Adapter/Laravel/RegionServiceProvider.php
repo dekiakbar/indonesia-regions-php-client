@@ -2,8 +2,8 @@
 
 namespace Dekiakbar\IndonesiaRegionsPhpClient\Adapter\Laravel;
 
-use Illuminate\Support\ServiceProvider;
 use Dekiakbar\IndonesiaRegionsPhpClient\Region;
+use Illuminate\Support\ServiceProvider;
 
 class RegionServiceProvider extends ServiceProvider
 {
