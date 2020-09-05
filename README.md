@@ -2,8 +2,10 @@
 
 <p align="center">
     <a href="https://travis-ci.com/github/dekiakbar/indonesia-regions-php-client"><img src="https://travis-ci.com/dekiakbar/indonesia-regions-php-client.svg?branch=master" alt="Build Status"></a>
-    <a href="https://packagist.org/packages/dekiakbar/indonesia-regions-php-client"><img src="https://poser.pugx.org/dekiakbar/indonesia-regions-php-client/version" alt="Build Status"></a>
-    <a href="https://packagist.org/packages/dekiakbar/indonesia-regions-php-client"><img src="https://poser.pugx.org/dekiakbar/indonesia-regions-php-client/license" alt="Build Status"></a>
+    <a href="https://packagist.org/packages/dekiakbar/indonesia-regions-php-client"><img src="https://poser.pugx.org/dekiakbar/indonesia-regions-php-client/version" alt="Stable Version"></a>
+    <a href="https://packagist.org/packages/dekiakbar/indonesia-regions-php-client"><img src="https://poser.pugx.org/dekiakbar/indonesia-regions-php-client/v/unstable" alt="Unstable Version"></a>
+    <a href="https://packagist.org/packages/dekiakbar/indonesia-regions-php-client"><img src="https://github.styleci.io/repos/281455260/shield?branch=master" alt="StyleCI"></a>
+    <a href="https://github.com/dekiakbar/indonesia-regions-php-client/blob/master/LICENSE"><img src="https://poser.pugx.org/dekiakbar/indonesia-regions-php-client/license" alt="License"></a>
 </p>
 
 ---
@@ -27,7 +29,7 @@
 Before you install this package, make sure that the requirements below are met
 
 ```
-PHP >= 7.1
+PHP >= 7.2
 ext-json
 ext-curl
 ```
@@ -357,5 +359,5 @@ ext-curl
 
 [![License](https://poser.pugx.org/dekiakbar/indonesia-regions-php-client/license)](//packagist.org/packages/dekiakbar/indonesia-regions-php-client)
 
-- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- **[MIT license](https://github.com/dekiakbar/indonesia-regions-php-client/blob/master/LICENSE)**
 - Copyright 2020 © <a href="https://github.com/dekiakbar" target="_blank">Deki Akbar</a>.
