@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/app
+    command: >
+      sh -c "composer install -vvv &&
+            ./vendor/phpunit/phpunit/phpunit"
