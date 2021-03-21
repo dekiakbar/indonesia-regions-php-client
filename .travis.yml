@@ -26,6 +26,8 @@ matrix:
   exclude:    
     - php: 7.2
       env: LARAVEL_VERSION=dev-master
+    - php: 7.3
+      env: LARAVEL_VERSION=dev-master
 
 before_script:
   - composer config discard-changes true
