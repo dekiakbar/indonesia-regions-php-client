@@ -1,5 +1,18 @@
 version: "3.9"
 services:
+  mysql:
+    image: mysql:8.0.17
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - indonesia-regions-mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: indonesia_regions
+      MYSQL_USER: root
+    ports:
+      - "3308:3306"
+  
   app:
     build:
       context: .
@@ -8,4 +21,15 @@ services:
       - ./:/app
     command: >
       sh -c "composer install -vvv &&
-            ./vendor/phpunit/phpunit/phpunit"
+            ./vendor/phpunit/phpunit/phpunit &&
+            tar -xzvf export/indonesia_regions_db.tar.gz -C export &&
+            mysql -uroot -ptoor indonesia_regions < export/indonesia_regions.sql &&
+            rm -rf export/indonesia_regions.sql &&
+            tail -F anything"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: toor
+      MYSQL_DB: indonesia_regions
+volumes:
+  indonesia-regions-mysql-data:

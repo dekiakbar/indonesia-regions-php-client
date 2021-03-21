@@ -32,7 +32,26 @@ Before you install this package, make sure that the requirements below are met
 PHP >= 7.2
 ext-json
 ext-curl
+docker (optional)
+docker-compose (optional)
 ```
+
+---
+
+## Developmrnt (Docker)
+For development you can use docker container for this project, here are step to reproduce docker env on your local env :
+- Clone this repository: `git clone https://github.com/dekiakbar/indonesia-regions-php-client.git`
+- Navigate to project directory : `cd indonesia-regions-php-client`
+- Snd run : `docker-compose up -d`
+- Wait a few minutes, the image for docker will build automatic, after the build has been done you will get an image with the name **indonesia-regions-php-client_app** and a container with the name **indonesia-regions-php-client_app_1** and **indonesia-regions-php-client_mysql_1**.
+- Check if the container are exit, you can run : `docker ps -a`
+- If the container is not running, you can run : `docker start indonesia-regions-php-client_app_1` and `docker start indonesia-regions-php-client_mysql_1`
+- You can run interactive shell (SSH) : `docker exec -it indonesia-regions-php-client_app_1 /bin/bash`
+- **NOTE:**
+  - The **indonesia-regions-php-client_app_1** container is used to mount the directory project.
+  - The **indonesia-regions-php-client_mysql_1** container is used to save the database from project.
+  - The default docker workdir is **app** for **indonesia-regions-php-client_app_1** container.
+  - The **app** directory is mounted from **indonesia-regions-php-client** host directory, so if you edit the file inside **indonesia-regions-php-client** in the host Operating system, the file inside docker will be changed or vice versa, the reason I made docker container mount the project root a.k.a **indonesia-regions-php-client** to the app because I am too lazy to mount file from docker, so if docker mount file from **indonesia-regions-php-client** root directory I can simple edit the file directly from my favorite IDE :stuck_out_tongue_closed_eyes:
 
 ---
 
