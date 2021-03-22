@@ -22,43 +22,55 @@ class RegionTest extends TestCase
     public function testgetAllProvinceBps()
     {
         $response = $this->region->getAllProvince('bps');
-        foreach ($response->detail as $data) {
-            $this->assertObjectHasAttribute('kode', $data);
-            $this->assertObjectHasAttribute('nama', $data);
+        if( is_array($response->detail) ){
+            foreach ($response->detail as $data) {
+                $this->assertObjectHasAttribute('kode', $data);
+                $this->assertObjectHasAttribute('nama', $data);
+            }
         }
-        foreach ($response->list as $data) {
-            $this->assertObjectHasAttribute('kode', $data);
-            $this->assertObjectHasAttribute('nama', $data);
+        if( is_array($response->list) ){
+            foreach ($response->list as $data) {
+                $this->assertObjectHasAttribute('kode', $data);
+                $this->assertObjectHasAttribute('nama', $data);
+            }
         }
     }
 
     public function testgetAllProvinceDagri()
     {
         $response = $this->region->getAllProvince('dagri');
-        foreach ($response->detail as $data) {
-            $this->assertObjectHasAttribute('kode_bps', $data);
-            $this->assertObjectHasAttribute('nama_bps', $data);
-            $this->assertObjectHasAttribute('kode_dagri', $data);
-            $this->assertObjectHasAttribute('nama_dagri', $data);
+        if( is_array($response->detail) ){
+            foreach ($response->detail as $data) {
+                $this->assertObjectHasAttribute('kode_bps', $data);
+                $this->assertObjectHasAttribute('nama_bps', $data);
+                $this->assertObjectHasAttribute('kode_dagri', $data);
+                $this->assertObjectHasAttribute('nama_dagri', $data);
+            }
         }
-        foreach ($response->list as $data) {
-            $this->assertObjectHasAttribute('kode', $data);
-            $this->assertObjectHasAttribute('nama', $data);
+        if( is_array($response->list) ){
+            foreach ($response->list as $data) {
+                $this->assertObjectHasAttribute('kode', $data);
+                $this->assertObjectHasAttribute('nama', $data);
+            }
         }
     }
 
     public function testgetAllProvincePos()
     {
         $response = $this->region->getAllProvince('pos');
-        foreach ($response->detail as $data) {
-            $this->assertObjectHasAttribute('kode_bps', $data);
-            $this->assertObjectHasAttribute('nama_bps', $data);
-            $this->assertObjectHasAttribute('kode_pos', $data);
-            $this->assertObjectHasAttribute('nama_pos', $data);
+        if( is_array($response->detail) ){
+            foreach ($response->detail as $data) {
+                $this->assertObjectHasAttribute('kode_bps', $data);
+                $this->assertObjectHasAttribute('nama_bps', $data);
+                $this->assertObjectHasAttribute('kode_pos', $data);
+                $this->assertObjectHasAttribute('nama_pos', $data);
+            }
         }
-        foreach ($response->list as $data) {
-            $this->assertObjectHasAttribute('kode', $data);
-            $this->assertObjectHasAttribute('nama', $data);
+        if( is_array($response->list) ){
+            foreach ($response->list as $data) {
+                $this->assertObjectHasAttribute('kode', $data);
+                $this->assertObjectHasAttribute('nama', $data);
+            }
         }
     }
 
@@ -67,13 +79,17 @@ class RegionTest extends TestCase
         $provinceIds = [11];
         foreach ($provinceIds as $provinceId) {
             $cities = $this->region->getCityListByProvinceId('bps', $provinceId);
-            foreach ($cities->list as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if( is_array($cities->list) ){
+                foreach ($cities->list as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
-            foreach ($cities->detail as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if( is_array($cities->detail) ){
+                foreach ($cities->detail as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
         }
     }
@@ -83,15 +99,19 @@ class RegionTest extends TestCase
         $provinceIds = [63];
         foreach ($provinceIds as $provinceId) {
             $cities = $this->region->getCityListByProvinceId('dagri', $provinceId);
-            foreach ($cities->detail as $data) {
-                $this->assertObjectHasAttribute('kode_bps', $data);
-                $this->assertObjectHasAttribute('nama_bps', $data);
-                $this->assertObjectHasAttribute('kode_dagri', $data);
-                $this->assertObjectHasAttribute('nama_dagri', $data);
+            if( is_array($cities->detail) ){
+                foreach ($cities->detail as $data) {
+                    $this->assertObjectHasAttribute('kode_bps', $data);
+                    $this->assertObjectHasAttribute('nama_bps', $data);
+                    $this->assertObjectHasAttribute('kode_dagri', $data);
+                    $this->assertObjectHasAttribute('nama_dagri', $data);
+                }
             }
-            foreach ($cities->list as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if( is_array($cities->list) ){
+                foreach ($cities->list as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
         }
     }
@@ -101,15 +121,19 @@ class RegionTest extends TestCase
         $provinceIds = [61];
         foreach ($provinceIds as $provinceId) {
             $cities = $this->region->getCityListByProvinceId('pos', $provinceId);
-            foreach ($cities->detail as $data) {
-                $this->assertObjectHasAttribute('kode_bps', $data);
-                $this->assertObjectHasAttribute('nama_bps', $data);
-                $this->assertObjectHasAttribute('kode_pos', $data);
-                $this->assertObjectHasAttribute('nama_pos', $data);
+            if( is_array($cities->detail) ){
+                foreach ($cities->detail as $data) {
+                    $this->assertObjectHasAttribute('kode_bps', $data);
+                    $this->assertObjectHasAttribute('nama_bps', $data);
+                    $this->assertObjectHasAttribute('kode_pos', $data);
+                    $this->assertObjectHasAttribute('nama_pos', $data);
+                }
             }
-            foreach ($cities->list as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if( is_array($cities->list) ){
+                foreach ($cities->list as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
         }
     }
@@ -119,13 +143,17 @@ class RegionTest extends TestCase
         $cityIds = [3278];
         foreach ($cityIds as $cityId) {
             $subdistricts = $this->region->getSubdistrictListByCityId('bps', $cityId);
-            foreach ($subdistricts->list as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if(is_array($subdistricts->list)){
+                foreach ($subdistricts->list as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
-            foreach ($subdistricts->detail as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if(is_array($subdistricts->detail)){
+                foreach ($subdistricts->detail as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
         }
     }
@@ -135,15 +163,19 @@ class RegionTest extends TestCase
         $cityIds = ['32.78'];
         foreach ($cityIds as $cityId) {
             $subdistricts = $this->region->getSubdistrictListByCityId('dagri', $cityId);
-            foreach ($subdistricts->detail as $data) {
-                $this->assertObjectHasAttribute('kode_bps', $data);
-                $this->assertObjectHasAttribute('nama_bps', $data);
-                $this->assertObjectHasAttribute('kode_dagri', $data);
-                $this->assertObjectHasAttribute('nama_dagri', $data);
+            if(is_array($subdistricts->detail)){
+                foreach ($subdistricts->detail as $data) {
+                    $this->assertObjectHasAttribute('kode_bps', $data);
+                    $this->assertObjectHasAttribute('nama_bps', $data);
+                    $this->assertObjectHasAttribute('kode_dagri', $data);
+                    $this->assertObjectHasAttribute('nama_dagri', $data);
+                }
             }
-            foreach ($subdistricts->list as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if(is_array($subdistricts->list)){
+                foreach ($subdistricts->list as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
         }
     }
@@ -153,15 +185,19 @@ class RegionTest extends TestCase
         $cityIds = [3272];
         foreach ($cityIds as $cityId) {
             $subdistricts = $this->region->getSubdistrictListByCityId('pos', $cityId);
-            foreach ($subdistricts->detail as $data) {
-                $this->assertObjectHasAttribute('kode_bps', $data);
-                $this->assertObjectHasAttribute('nama_bps', $data);
-                $this->assertObjectHasAttribute('kode_pos', $data);
-                $this->assertObjectHasAttribute('nama_pos', $data);
+            if(is_array($subdistricts->detail)){
+                foreach ($subdistricts->detail as $data) {
+                    $this->assertObjectHasAttribute('kode_bps', $data);
+                    $this->assertObjectHasAttribute('nama_bps', $data);
+                    $this->assertObjectHasAttribute('kode_pos', $data);
+                    $this->assertObjectHasAttribute('nama_pos', $data);
+                }
             }
-            foreach ($subdistricts->list as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if(is_array($subdistricts->list)){
+                foreach ($subdistricts->list as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
         }
     }
@@ -171,13 +207,17 @@ class RegionTest extends TestCase
         $subdistricIds = [340302];
         foreach ($subdistricIds as $subdistricId) {
             $villages = $this->region->getVillageListBySubdistrictId('bps', $subdistricId);
-            foreach ($villages->detail as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if(is_array($villages->detail)){
+                foreach ($villages->detail as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
-            foreach ($villages->list as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if(is_array($villages->list)){
+                foreach ($villages->list as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
         }
     }
@@ -187,11 +227,13 @@ class RegionTest extends TestCase
         $subdistricIds = ['34.03.02'];
         foreach ($subdistricIds as $subdistricId) {
             $villages = $this->region->getVillageListBySubdistrictId('dagri', $subdistricId);
-            foreach ($villages->detail as $data) {
-                $this->assertObjectHasAttribute('kode_bps', $data);
-                $this->assertObjectHasAttribute('nama_bps', $data);
-                $this->assertObjectHasAttribute('kode_dagri', $data);
-                $this->assertObjectHasAttribute('nama_dagri', $data);
+            if(is_array($villages->detail)){
+                foreach ($villages->detail as $data) {
+                    $this->assertObjectHasAttribute('kode_bps', $data);
+                    $this->assertObjectHasAttribute('nama_bps', $data);
+                    $this->assertObjectHasAttribute('kode_dagri', $data);
+                    $this->assertObjectHasAttribute('nama_dagri', $data);
+                }
             }
         }
     }
@@ -201,15 +243,19 @@ class RegionTest extends TestCase
         $subdistricIds = [327203];
         foreach ($subdistricIds as $subdistricId) {
             $villages = $this->region->getVillageListBySubdistrictId('pos', $subdistricId);
-            foreach ($villages->detail as $data) {
-                $this->assertObjectHasAttribute('kode_bps', $data);
-                $this->assertObjectHasAttribute('nama_bps', $data);
-                $this->assertObjectHasAttribute('kode_pos', $data);
-                $this->assertObjectHasAttribute('nama_pos', $data);
+            if(is_array($villages->detail)){
+                foreach ($villages->detail as $data) {
+                    $this->assertObjectHasAttribute('kode_bps', $data);
+                    $this->assertObjectHasAttribute('nama_bps', $data);
+                    $this->assertObjectHasAttribute('kode_pos', $data);
+                    $this->assertObjectHasAttribute('nama_pos', $data);
+                }
             }
-            foreach ($villages->list as $data) {
-                $this->assertObjectHasAttribute('kode', $data);
-                $this->assertObjectHasAttribute('nama', $data);
+            if(is_array($villages->list)){
+                foreach ($villages->list as $data) {
+                    $this->assertObjectHasAttribute('kode', $data);
+                    $this->assertObjectHasAttribute('nama', $data);
+                }
             }
         }
     }
