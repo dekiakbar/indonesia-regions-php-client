@@ -4,7 +4,7 @@ namespace Dekiakbar\IndonesiaRegionsPhpClient;
 
 class Region
 {
-    const VERSION = '1.2.0';
+    const VERSION = '1.2.1';
     const API_BASE_PATH = 'https://sig.bps.go.id/';
     const DEFAULT_MODE = 'bps';
 
