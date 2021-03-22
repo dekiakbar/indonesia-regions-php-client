@@ -3,19 +3,23 @@ RUN apt-get update && \
     apt-get install software-properties-common -y && \
     add-apt-repository ppa:ondrej/php && \
     apt update && \
-    apt install tar mysql-client wget git php7.2 php7.3 php7.4 \
+    apt install tar mysql-client wget git php7.2 php7.3 php7.4 php8.0 \
         php7.2-curl \
         php7.3-curl \
         php7.4-curl \
+        php8.0-curl \
         php7.2-mbstring \
         php7.3-mbstring \
         php7.4-mbstring \
+        php8.0-mbstring \
         php7.2-dom \
         php7.3-dom \
         php7.4-dom \
+        php8.0-dom \
         php7.2-mysql \
         php7.3-mysql \
         php7.4-mysql \
+        php8.0-mysql \
         composer -y
 VOLUME ["/app"]
 WORKDIR /app

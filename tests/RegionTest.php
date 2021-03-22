@@ -64,7 +64,7 @@ class RegionTest extends TestCase
 
     public function testgetCityListByProvinceIdBps()
     {
-        $provinceIds = [11, 32, 35, 34];
+        $provinceIds = [11];
         foreach ($provinceIds as $provinceId) {
             $cities = $this->region->getCityListByProvinceId('bps', $provinceId);
             foreach ($cities->list as $data) {
@@ -80,7 +80,7 @@ class RegionTest extends TestCase
 
     public function testgetCityListByProvinceIdDagri()
     {
-        $provinceIds = [61, 63, 62, 64];
+        $provinceIds = [63];
         foreach ($provinceIds as $provinceId) {
             $cities = $this->region->getCityListByProvinceId('dagri', $provinceId);
             foreach ($cities->detail as $data) {
@@ -98,7 +98,7 @@ class RegionTest extends TestCase
 
     public function testgetCityListByProvinceIdPos()
     {
-        $provinceIds = [61, 63, 62, 64];
+        $provinceIds = [61];
         foreach ($provinceIds as $provinceId) {
             $cities = $this->region->getCityListByProvinceId('pos', $provinceId);
             foreach ($cities->detail as $data) {
@@ -116,7 +116,7 @@ class RegionTest extends TestCase
 
     public function testgetSubdistrictListByCityIdBps()
     {
-        $cityIds = [3272, 3278, 3276, 3218, 3471, 3402, 3403];
+        $cityIds = [3278];
         foreach ($cityIds as $cityId) {
             $subdistricts = $this->region->getSubdistrictListByCityId('bps', $cityId);
             foreach ($subdistricts->list as $data) {
@@ -132,7 +132,7 @@ class RegionTest extends TestCase
 
     public function testgetSubdistrictListByCityIdDagri()
     {
-        $cityIds = ['32.72', '32.78', '32.76', '32.18', '34.71', '34.02', '34.03'];
+        $cityIds = ['32.78'];
         foreach ($cityIds as $cityId) {
             $subdistricts = $this->region->getSubdistrictListByCityId('dagri', $cityId);
             foreach ($subdistricts->detail as $data) {
@@ -150,7 +150,7 @@ class RegionTest extends TestCase
 
     public function testgetSubdistrictListByCityIdPos()
     {
-        $cityIds = [3272, 3278, 3276, 3218, 3471, 3402, 3403];
+        $cityIds = [3272];
         foreach ($cityIds as $cityId) {
             $subdistricts = $this->region->getSubdistrictListByCityId('pos', $cityId);
             foreach ($subdistricts->detail as $data) {
@@ -168,7 +168,7 @@ class RegionTest extends TestCase
 
     public function testgetVillageListBySubdistrictIdBps()
     {
-        $subdistricIds = [327203, 340302, 330202, 110102, 210304, 640305, 610107];
+        $subdistricIds = [340302];
         foreach ($subdistricIds as $subdistricId) {
             $villages = $this->region->getVillageListBySubdistrictId('bps', $subdistricId);
             foreach ($villages->detail as $data) {
@@ -184,7 +184,7 @@ class RegionTest extends TestCase
 
     public function testgetVillageListBySubdistrictIdDagri()
     {
-        $subdistricIds = ['32.72.03', '34.03.02', '33.02.02', '11.01.02', '21.03.04', '64.03.05', '61.01.07'];
+        $subdistricIds = ['34.03.02'];
         foreach ($subdistricIds as $subdistricId) {
             $villages = $this->region->getVillageListBySubdistrictId('dagri', $subdistricId);
             foreach ($villages->detail as $data) {
@@ -198,7 +198,7 @@ class RegionTest extends TestCase
 
     public function testgetVillageListBySubdistrictIdPos()
     {
-        $subdistricIds = [327203, 340302, 330202, 110102, 210304, 640305, 610107];
+        $subdistricIds = [327203];
         foreach ($subdistricIds as $subdistricId) {
             $villages = $this->region->getVillageListBySubdistrictId('pos', $subdistricId);
             foreach ($villages->detail as $data) {

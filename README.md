@@ -38,7 +38,7 @@ docker-compose (optional)
 
 ---
 
-## Developmrnt (Docker)
+## Development (Docker)
 For development you can use docker container for this project, here are step to reproduce docker env on your local env :
 - Clone this repository: `git clone https://github.com/dekiakbar/indonesia-regions-php-client.git`
 - Navigate to project directory : `cd indonesia-regions-php-client`
